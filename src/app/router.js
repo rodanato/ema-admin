@@ -4,22 +4,23 @@ import {
 } from 'react-router-dom';
 import React  from 'react';
 
-import StarshipsLibraryContainer from "./starships-library/starships-library.container";
+import * as routes from '../constants/routes';
+import Navigation from './navigation/navigation.component';
 import Home from './home/home.component';
-import Header from './header/header.component';
+import SignIn     from "./sign-in/sign-in.component";
 
 const AppRouter = () => {
   return (
     <Router>
       <main>
-        <Header/>
+        <Navigation/>
 
         <hr/>
 
-        <Route exact path="/"
+        <Route exact path={routes.HOME}
                component={Home}/>
-        <Route path="/library"
-               component={StarshipsLibraryContainer}/>
+        <Route exact path={routes.SING_IN}
+               component={SignIn}/>
       </main>
     </Router>
   );
