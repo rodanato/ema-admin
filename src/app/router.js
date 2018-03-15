@@ -19,7 +19,7 @@ const AppRouter = () => {
 
         <Route exact path={routes.HOME}
                component={Home}/>
-        <Route exact path={routes.SING_IN}
+        <Route exact path={routes.SIGN_IN}
                component={SignIn}/>
       </main>
     </Router>

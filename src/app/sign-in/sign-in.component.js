@@ -2,93 +2,54 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
-import { SignUpLink } from './SignUp';
-import { auth } from '../firebase';
-import * as routes from '../constants/routes';
+import { auth } from '../../config/firebase';
 
-const SignInPage = ({ history }) =>
-  <div>
-    <h1>SignIn</h1>
-    <SignInForm history={history} />
-    <SignUpLink />
-  </div>;
+class SignIn extends Component {
+  email;
+  password;
 
-const byPropKey = (propertyName, value) => () => ({
-  [propertyName]: value,
-});
-
-const INITIAL_STATE = {
-  email: '',
-  password: '',
-  error: null,
-};
-
-class SignInForm extends Component {
   constructor(props) {
     super(props);
-
-    this.state = { ...INITIAL_STATE };
   }
 
   onSubmit = (event) => {
-    const {
-      email,
-      password,
-    } = this.state;
-
-    const {
-      history,
-    } = this.props;
-
-    auth.doSignInWithEmailAndPassword(email, password)
-      .then(() => {
-        this.setState(() => ({ ...INITIAL_STATE }));
-        history.push(routes.HOME);
-      })
-      .catch(error => {
-        this.setState(byPropKey('error', error));
-      });
-
     event.preventDefault();
+    console.log(event);
+
+    // auth.doSignInWithEmailAndPassword(email, password)
+    //   .then(() => {
+    //     console.log('logged in');
+    //   })
+    //   .catch(error => {
+    //     console.log('error', error);
+    //   });
+
   };
 
   render() {
-    const {
-      email,
-      password,
-      error,
-    } = this.state;
-
-    const isInvalid =
-      password === '' ||
-      email === '';
-
     return (
-      <form onSubmit={this.onSubmit}>
+      <form onSubmit={() => this.onSubmit}>
+        <h1>SignIn</h1>
         <input
-          value={email}
-          onChange={event => this.setState(byPropKey('email', event.target.value))}
+          value={this.email}
           type="text"
           placeholder="Email Address"
         />
         <input
-          value={password}
-          onChange={event => this.setState(byPropKey('password', event.target.value))}
+          value={this.password}
           type="password"
           placeholder="Password"
         />
-        <button disabled={isInvalid} type="submit">
+        <button type="submit">
           Sign In
         </button>
-
-        { error && <p>{error.message}</p> }
       </form>
     );
   }
 }
 
-export default withRouter(SignInPage);
+export default withRouter(SignIn);
 
 export {
-  SignInForm,
+  SignIn,
 };
