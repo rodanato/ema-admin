@@ -1,26 +1,20 @@
 import * as firebase from 'firebase';
 
-const devConfig = {
-  apiKey: "AIzaSyBTTHSLbpFy5fyqzu_c0bmZ42sptibenzs",
-  authDomain: "nina-dev.firebaseapp.com",
-  databaseURL: "https://nina-dev.firebaseio.com",
-  projectId: "nina-dev",
-  storageBucket: "nina-dev.appspot.com",
-  messagingSenderId: "802812513496"
+const configEnv = {
+  dev: {
+    apiKey: "AIzaSyCj7EKhplhm0H431rcVgr1trXKlaVMxbmw",
+    authDomain: "nina-dev-admin.firebaseapp.com",
+    databaseURL: "https://nina-dev-admin.firebaseio.com",
+    projectId: "nina-dev-admin",
+    storageBucket: "nina-dev-admin.appspot.com",
+    messagingSenderId: "701478703081"
+  },
+  qa: {},
+  uat: {},
+  prod: {}
 };
 
-const prodConfig = {
-  apiKey: "AIzaSyC8NSFaht1dOrmaRfoJ-EMVYLdTXR7GMNQ",
-  authDomain: "nina-qa.firebaseapp.com",
-  databaseURL: "https://nina-qa.firebaseio.com",
-  projectId: "nina-qa",
-  storageBucket: "nina-qa.appspot.com",
-  messagingSenderId: "143352312703"
-};
-
-const config = process.env.NODE_ENV === 'production'
-  ? prodConfig
-  : devConfig;
+const config = configEnv[process.env.REACT_APP_ENV];
 
 if (!firebase.apps.length) {
   firebase.initializeApp(config);
