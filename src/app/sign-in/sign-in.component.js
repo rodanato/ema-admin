@@ -1,10 +1,15 @@
 // @flow
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import * as routes from 'constants/routes';
 
-import { auth } from '../../config/firebase';
+import { auth } from 'config/firebase';
 
-type Props = {};
+type History = any;
+
+type Props = {
+  history: History
+};
 type State = {
   email: string,
   password: string,
@@ -19,9 +24,14 @@ class SignIn extends Component<Props, State> {
   onSubmit(e: SyntheticEvent<HTMLButtonElement>) {
     e.preventDefault();
 
+    const {
+      history
+    } = this.props;
+
     auth.doSignInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
         console.log('logged in');
+        history.push(routes.HOME);
       })
       .catch(error => {
         console.log('error', error);
