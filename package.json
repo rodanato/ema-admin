@@ -12,6 +12,7 @@
     "reason-react": "^0.3.4"
   },
   "devDependencies": {
+    "bulma": "^0.6.2",
     "cross-env": "^5.1.4",
     "jest": "^22.4.2",
     "node-sass-chokidar": "^0.0.3",

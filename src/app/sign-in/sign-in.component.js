@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import * as routes from 'constants/routes';
 
 import { auth } from 'config/firebase';
-
+import './sign-in.component.css'
 
 class SignIn extends Component {
   state = {
@@ -35,26 +35,38 @@ class SignIn extends Component {
 
   render() {
     return (
-      <form onSubmit={e => this.onSubmit(e)}>
-        <h1>SignIn</h1>
-        <input
-          value={this.state.email}
-          onChange={e => this.handleInputChange(e)}
-          type="text"
-          name="email"
-          placeholder="Email"
-        />
-        <input
-          value={this.state.password}
-          onChange={e => this.handleInputChange(e)}
-          type="password"
-          name="password"
-          placeholder="Password"
-        />
-        <button type="submit">
-          Sign In
-        </button>
-      </form>
+      <div className={'columns is-centered'}>
+        <form onSubmit={e => this.onSubmit(e)}
+              className={'column is-half box login__container'}>
+          <div className="columns is-multiline">
+            <div className="column is-12">
+              <h1>SignIn</h1>
+              <input
+                className={'input'}
+                value={this.state.email}
+                onChange={e => this.handleInputChange(e)}
+                type="text"
+                name="email"
+                placeholder="Email"
+              />
+            </div>
+
+            <div className="column is-12">
+              <input
+                className={'input'}
+                value={this.state.password}
+                onChange={e => this.handleInputChange(e)}
+                type="password"
+                name="password"
+                placeholder="Password"
+              />
+              <button type="submit">
+                Sign In
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     );
   }
 }

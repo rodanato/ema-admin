@@ -16,8 +16,6 @@ const AppRouter = () => {
       <main>
         <Navigation/>
 
-        <hr/>
-
         <Route exact path={routes.HOME}
                component={Home}/>
         <Route exact path={routes.SIGN_IN}
