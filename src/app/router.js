@@ -1,13 +1,14 @@
+import React  from 'react';
 import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom';
-import React  from 'react';
 
+import withAuthentication from 'shared/components/with-authentication/with-authentication.component';
 import * as routes from '../constants/routes';
-import Navigation from './navigation/navigation.component';
-import Home from './home/home.component';
-import SignIn     from "./sign-in/sign-in.component";
+import Navigation  from './navigation/navigation.container';
+import Home        from './home/home.container';
+import SignIn      from "./sign-in/sign-in.component.container";
 
 const AppRouter = () => {
   return (
@@ -26,4 +27,4 @@ const AppRouter = () => {
   );
 };
 
-export default AppRouter;
+export default withAuthentication(AppRouter);

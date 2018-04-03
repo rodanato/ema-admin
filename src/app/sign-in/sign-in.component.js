@@ -1,27 +1,18 @@
-// @flow
+
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import * as routes from 'constants/routes';
 
 import { auth } from 'config/firebase';
 
-type History = any;
 
-type Props = {
-  history: History
-};
-type State = {
-  email: string,
-  password: string,
-};
-
-class SignIn extends Component<Props, State> {
+class SignIn extends Component {
   state = {
     email: '',
     password: ''
   };
 
-  onSubmit(e: SyntheticEvent<HTMLButtonElement>) {
+  onSubmit(e) {
     e.preventDefault();
 
     const {
@@ -38,7 +29,7 @@ class SignIn extends Component<Props, State> {
       });
   }
 
-  handleInputChange(e: SyntheticEvent<HTMLButtonElement>) {
+  handleInputChange(e) {
     this.setState({ [e.currentTarget.name]: e.currentTarget.value });
   }
 

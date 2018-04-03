@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 
-import Home from './home.component';
+import SignIn from './sign-in.component';
+
 
 const mapStateToProps = (state) => ({
 });
@@ -9,9 +10,11 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 
-const HomeContainer = connect(
+const SignInContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Home);
+)(SignIn);
 
-export default HomeContainer;
+export default SignInContainer;
+
+

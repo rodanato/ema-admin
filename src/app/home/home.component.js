@@ -1,4 +1,5 @@
 import React from 'react';
+import withAuthorization from 'shared/components/with-authorization/with-authorization.component';
 
 const Home = () => (
   <section>
@@ -6,4 +7,6 @@ const Home = () => (
   </section>
 );
 
-export default Home;
+const authCondition = (authUser) => !!authUser;
+
+export default withAuthorization(authCondition)(Home);
