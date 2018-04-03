@@ -6,5 +6,6 @@ export const doCreateUserWithEmailAndPassword = (email, password) =>
 export const doSignInWithEmailAndPassword = (email, password) =>
   auth.signInWithEmailAndPassword(email, password);
 
-export const doSignOut = () =>
-  auth.signOut();
+export const doSignOut = () => auth.signOut();
+
+export const getToken = () => auth.currentUser.getIdToken(true);

@@ -1,14 +1,26 @@
 import React  from 'react';
 import {
   BrowserRouter as Router,
-  Route
+  Route,
+  Switch
 } from 'react-router-dom';
+import Loadable from 'react-loadable';
 
 import withAuthentication from 'shared/components/with-authentication/with-authentication.component';
 import * as routes from '../constants/routes';
 import Navigation  from './navigation/navigation.container';
-import Home        from './home/home.container';
-import SignIn      from "./sign-in/sign-in.component.container";
+
+const Loading = () => <div>Loading...</div>;
+
+const Home = Loadable({
+  loader: () => import('./home/home.container'),
+  loading: Loading,
+});
+
+const SignIn = Loadable({
+  loader: () => import('./sign-in/sign-in.component.container'),
+  loading: Loading,
+});
 
 const AppRouter = () => {
   return (
@@ -16,10 +28,12 @@ const AppRouter = () => {
       <main>
         <Navigation/>
 
-        <Route exact path={routes.HOME}
-               component={Home}/>
-        <Route exact path={routes.SIGN_IN}
-               component={SignIn}/>
+        <Switch>
+          <Route exact path={routes.HOME}
+                 component={Home}/>
+          <Route exact path={routes.SIGN_IN}
+                 component={SignIn}/>
+        </Switch>
       </main>
     </Router>
   );
