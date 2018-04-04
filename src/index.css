@@ -6503,3 +6503,17 @@ label.panel-block {
 .footer {
   background-color: whitesmoke;
   padding: 3rem 1.5rem 6rem; }
+
+body {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 400; }
+
+main {
+  height: 100vh; }
+
+.input:focus,
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+  outline: none; }

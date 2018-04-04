@@ -1,0 +1,74 @@
+
+@mixin light() {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 300;
+}
+@mixin regular() {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 400;
+}
+@mixin bold() {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 600;
+}
+
+
+$computerBig    : 1920px;
+$computer       : 1280px;
+$tabletPortrait : 801px;
+$mobilePortrait : 415px;
+$mobileLandscape: 736px;
+$iphone         : 320px;
+
+@mixin responsive($media) {
+  @if $media == big-computer {
+    @media only screen and (min-width: $computerBig) { @content; }
+  }
+  @else if $media == computer {
+    @media only screen and (min-width: $computer) { @content; }
+  }
+  @else if $media == only-computer-small {
+    @media only screen and (min-width: 960px) and (max-width: 1600px) { @content; }
+  }
+  @else if $media == from-tablet-landscape-to-computer {
+    @media only screen and (min-width: 960px) { @content; }
+  }
+  @else if $media == tablet-landscape and (orientation: landscape) {
+    @media only screen and (max-width: $computer - 1) { @content; }
+  }
+  @else if $media == tablet-portrait {
+    @media only screen and (max-width: $tabletPortrait) { @content; }
+  }
+  @else if $media == only-tablet {
+    @media only screen and (min-width: 600px) and (max-width: $computer - 1) and (min-height: 430px) { @content; }
+  }
+  @else if $media == only-mobile {
+    @media only screen and (max-width: 740px) and (max-height: 740px) { @content; }
+  }
+  @else if $media == mobile-landscape {
+    @media only screen and (max-width: $tabletPortrait) and (max-height: $mobilePortrait) and (orientation: landscape) { @content; }
+  }
+  @else if $media == mobile-portrait {
+    @media only screen and (max-width: $mobilePortrait) { @content; }
+  }
+  @else if $media == mobile-small {
+    @media only screen and (max-width: $iphone) { @content; }
+  }
+  @else if $media == mobile-small-landscape {
+    @media only screen and (max-width: $tabletPortrait) and (max-height: $iphone) and (orientation: landscape) { @content; }
+  }
+  @else {
+    @media only screen and (max-width: $media) { @content; }
+  }
+}
+
+@mixin prefix($declarations, $prefixes: (moz webkit ms o)) {
+  @each $property, $value in $declarations {
+    @each $prefix in $prefixes {
+      #{'-' + $prefix + '-' + $property}: $value;
+    }
+
+    // Output standard non-prefixed declaration
+    #{$property}: $value;
+  }
+}

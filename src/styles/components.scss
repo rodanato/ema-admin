@@ -1,0 +1,13 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+
+.ema-btn--success {
+  background: $blue;
+  color: #fff;
+  text-transform : uppercase;
+  @include light();
+
+  &:hover {
+    color: #fff;
+  }
+}

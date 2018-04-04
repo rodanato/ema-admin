@@ -1,0 +1,21 @@
+
+@import "bulma/sass/utilities/initial-variables";
+@import "bulma/sass/utilities/functions";
+@import "bulma/bulma";
+@import "styles/mixins.scss";
+
+body {
+  @include regular();
+}
+
+main {
+  height: 100vh;
+}
+
+.input:focus,
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+  outline: none;
+}

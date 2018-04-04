@@ -1,0 +1,59 @@
+@import "styles/variables.scss";
+@import "styles/mixins.scss";
+@import "styles/components.scss";
+
+.login {
+  &__section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  &__logo {
+    width: 215px;
+    margin: 0 auto 40px auto;
+  }
+  &__error {
+    color: $error;
+    display: block;
+    font-size: 12px;
+    height : 15px;
+  }
+  &__form {
+    @include responsive('from-tablet-landscape-to-computer') {
+      max-width: 330px;
+    }
+  }
+  &__form-block {
+    margin-bottom: 4px;
+    padding: 0.75rem 45px;
+  }
+  &__input {
+    border-radius: 0;
+    border: none;
+    border-bottom : 1px solid $gray;
+    font-size: 15px;
+    @include regular();
+    @include prefix((
+      box-shadow: (none)
+    ));
+
+    &::-webkit-input-placeholder {
+      color: $blue;
+    }
+    &::-moz-placeholder {
+      color: $blue;
+    }
+    &:-ms-input-placeholder {
+      color: $blue;
+    }
+    &:-moz-placeholder {
+      color: $blue;
+    }
+  }
+  &__submit {
+    font-size: 15px;
+    height : 53px;
+  }
+
+}

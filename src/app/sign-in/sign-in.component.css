@@ -1,2 +1,57 @@
-.login__container {
-  color: blue; }
+.ema-btn--success {
+  background: #636589;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 300; }
+  .ema-btn--success:hover {
+    color: #fff; }
+
+.login__section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+
+.login__logo {
+  width: 215px;
+  margin: 0 auto 40px auto; }
+
+.login__error {
+  color: #f07b7b;
+  display: block;
+  font-size: 12px;
+  height: 15px; }
+
+@media only screen and (min-width: 960px) {
+  .login__form {
+    max-width: 330px; } }
+
+.login__form-block {
+  margin-bottom: 4px;
+  padding: 0.75rem 45px; }
+
+.login__input {
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid #979797;
+  font-size: 15px;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 400;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -ms-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none; }
+  .login__input::-webkit-input-placeholder {
+    color: #636589; }
+  .login__input::-moz-placeholder {
+    color: #636589; }
+  .login__input:-ms-input-placeholder {
+    color: #636589; }
+  .login__input:-moz-placeholder {
+    color: #636589; }
+
+.login__submit {
+  font-size: 15px;
+  height: 53px; }
