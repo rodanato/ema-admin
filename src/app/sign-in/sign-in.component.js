@@ -9,23 +9,47 @@ import { Logger } from 'shared/utils';
 import withAuthorization from 'shared/components/with-authorization/with-authorization.component';
 import './sign-in.component.css';
 
-const passwordValidation = password => !password || password.trim() === '' ? 'Ingrese una contraseña válida' : null;
+let forceUserError = false;
+let forcePasswordError = false;
+
+const passwordValidation = password => {
+  console.log(1);
+  if (forcePasswordError) {
+    return 'Ingrese una contraseña válida';
+  }
+  if (!password || password.trim() === '') {
+   return 'Ingrese una contraseña válida';
+  }
+};
 const userValidation = user => {
+  console.log(1);
+  if (forceUserError) {
+    return 'Usuario no encontrado';
+  }
   if (!user || user.trim() === '') {
     return 'Ingrese una contraseña válida';
-  } else if (!user.match(/^\s*?(.+)@(.+?)\s*$/)) {
-    return 'Ingrese una contraseña válida';
-  } else {
-    return null;
   }
+  if (!user.match(/^\s*?(.+)@(.+?)\s*$/)) {
+    return 'Ingrese una contraseña válida';
+  }
+
+  return null;
 };
 
 class SignIn extends Component {
   state = {
     email: '',
-    password: '',
-    submittedValues: ''
+    password: ''
   };
+
+  handleError(errorCode) {
+    if (errorCode === 'auth/user-not-found') {
+      forceUserError = true;
+    }
+    if (errorCode === 'auth/wrong-password') {
+      forcePasswordError = true;
+    }
+  }
 
   onSubmit(submittedValues) {
     const {
@@ -40,7 +64,12 @@ class SignIn extends Component {
           history.push(routes.HOME);
         })
         .catch(error => {
-          Logger.error(`${error}`);
+          this.handleError(error.code);
+
+          Logger.error(`
+            Error code: ${error.code}
+            Error message: ${error.message}
+          `);
         });
     }
   }
@@ -66,6 +95,7 @@ class SignIn extends Component {
                     <Text field="user"
                           validate={userValidation}
                           className={'input login__input'}
+                          onChange={() => forceUserError = false}
                           placeholder={'Usuario'}
                           id="user" />
                     <span className={'login__error'}>{ this.showError(formApi.errors, 'user') }</span>
@@ -75,6 +105,7 @@ class SignIn extends Component {
                     <Text field="password"
                           validate={passwordValidation}
                           className={'input login__input'}
+                          onChange={() => forcePasswordError = false}
                           placeholder={'Contraseña'}
                           type={'password'}
                           id="Password" />

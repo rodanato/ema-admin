@@ -8,6 +8,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-image: url("/images/login-bg.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left bottom;
   }
   &__logo {
     width: 215px;

@@ -17,7 +17,8 @@ const configEnv = {
   prod: {}
 };
 
-const config = configEnv[process.env.REACT_APP_ENV];
+const env = process.env.REACT_APP_ENV;
+const config = configEnv[env];
 
 if (!firebase.apps.length) {
   firebase.initializeApp(config.firebase);

@@ -3,21 +3,18 @@ api_version: 1
 threadsafe: true
 
 handlers:
-- url: /(.+)
-  static_files: www/\1
-  upload: www/(.*)
+- url: /
+  static_files: build/index.html
+  upload: build/index.html
 
 - url: /
-  static_files: www/index.html
-  upload: www/index.html
+  static_dir: build
 
 skip_files:
 - ^node_modules*
 - ^src*
-- ^static*
 - ^test*
 - ^config*
-- ^build*
 - ^tmp*
 - ^(.)?index.html$
 - ^(.*/)?Procfile$
@@ -26,6 +23,7 @@ skip_files:
 - ^(.*/)?package.json$
 - ^(.*/)?.*\.md$
 - ^(.*/)?.*\.yaml$
+- ^(.*/)?.*\.map$
 - ^(.*/)?#.*#$
 - ^(.*/)?.*~$
 - ^(.*/)?.*\.py[co]$

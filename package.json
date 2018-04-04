@@ -29,19 +29,23 @@
     "whatwg-fetch": "^2.0.3"
   },
   "scripts": {
-    "serve:dev": "cross-env REACT_APP_ENV=dev npm-run-all -p watch-css start-js",
-    "serve:qa": "cross-env REACT_APP_ENV=qa npm-run-all -p watch-css start-js",
-    "serve:uat": "cross-env REACT_APP_ENV=uat npm-run-all -p watch-css start-js",
-    "serve:prod": "cross-env REACT_APP_ENV=prod npm-run-all -p watch-css start-js",
-    "build:dev": "npm run build-css && react-scripts build",
-    "build:qa": "npm run build-css && react-scripts build",
-    "build:uat": "npm run build-css && react-scripts build",
-    "build:prod": "npm run build-css && react-scripts build",
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
     "flow": "flow",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "serve:dev": "cross-env REACT_APP_ENV=dev npm-run-all -p watch-css start-js",
+    "serve:qa": "cross-env REACT_APP_ENV=qa npm-run-all -p watch-css start-js",
+    "serve:uat": "cross-env REACT_APP_ENV=uat npm-run-all -p watch-css start-js",
+    "serve:prod": "cross-env REACT_APP_ENV=prod npm-run-all -p watch-css start-js",
+    "build:dev": "npm run build-css && cross-env REACT_APP_ENV=dev react-scripts build",
+    "build:qa": "npm run build-css && cross-env REACT_APP_ENV=qa react-scripts build",
+    "build:uat": "npm run build-css && cross-env REACT_APP_ENV=uat react-scripts build",
+    "build:prod": "npm run build-css && cross-env REACT_APP_ENV=prod react-scripts build",
+    "deploy:dev": "gcloud --project ema-admin-console-dev app deploy",
+    "deploy:qa": "gcloud --project ema-admin-console-qa app deploy",
+    "deploy:uat": "gcloud --project ema-admin-console-uat app deploy",
+    "deploy:prod": "gcloud --project ema-admin-console app deploy"
   }
 }
