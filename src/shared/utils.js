@@ -14,5 +14,5 @@ const Logger = {
 
 
 export {
-  Logger
+  Logger,
 };

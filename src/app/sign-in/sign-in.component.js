@@ -37,6 +37,8 @@ const userValidation = user => {
 };
 
 class SignIn extends Component {
+  errorCode = '';
+
   state = {
     email: '',
     password: '',
@@ -45,21 +47,32 @@ class SignIn extends Component {
   };
 
   handleError(errorCode) {
+    this.errorCode = errorCode;
+
     if (errorCode === 'auth/user-not-found') {
-      this.setState({forceUserError: true});
+      return this.setState({forceUserError: true});
+    }
+    if (errorCode === 'auth/invalid-email') {
+      return this.setState({forceUserError: true});
     }
     if (errorCode === 'auth/wrong-password') {
-      this.setState({forcePasswordError: true});
+      return this.setState({forcePasswordError: true});
     }
   }
 
-  showError(errors, field, forcedError) {
-    if (forcedError && field === 'user') {
-      return errorsMap[field].notFound;
+  showError(errors, forcedError, field) {
+    if (forcedError) {
+      if (this.errorCode === 'auth/user-not-found') {
+        return errorsMap.user.notFound;
+      }
+      if (this.errorCode === 'auth/invalid-email') {
+        return errorsMap.user.default;
+      }
+      if (this.errorCode === 'auth/wrong-password') {
+        return errorsMap.password.wrong;
+      }
     }
-    if (forcedError && field === 'password') {
-      return errorsMap[field].wrong;
-    }
+
     return (errors && errors[field]) ? errors[field] : null;
   }
 
@@ -70,7 +83,7 @@ class SignIn extends Component {
 
     if (submittedValues.user &&
       submittedValues.password) {
-      auth.doSignInWithEmailAndPassword(submittedValues.user, submittedValues.password)
+      auth.doSignInWithEmailAndPassword(submittedValues.user.toLowerCase(), submittedValues.password)
         .then(() => {
           Logger.log(`Logged In`);
           history.push(routes.HOME);
@@ -93,11 +106,10 @@ class SignIn extends Component {
              className={'login__logo'}
              alt='Logo de ema'/>
         <div className={'columns is-centered'}>
-          <Form onSubmit={submittedValues => this.onSubmit(submittedValues)}
-                className={'login__form'}>
+          <Form onSubmit={submittedValues => this.onSubmit(submittedValues)}>
             {formApi => (
               <form onSubmit={formApi.submitForm}
-                    className={'column is-6'}>
+                    className={'column is-6 login__form'}>
                 <div className="columns is-multiline">
                   <div className="column is-12 login__form-block">
                     <Text field="user"
@@ -107,7 +119,7 @@ class SignIn extends Component {
                           onChange={() => this.setState({forceUserError: false})}
                           id="user"/>
                     <span
-                      className={'login__error'}>{this.showError(formApi.errors, 'user', this.state.forceUserError)}</span>
+                      className={'login__error'}>{this.showError(formApi.errors, this.state.forceUserError, 'user')}</span>
                   </div>
 
                   <div className="column is-12 login__form-block">
@@ -119,7 +131,7 @@ class SignIn extends Component {
                           type={'password'}
                           id="Password"/>
                     <span
-                      className={'login__error'}>{this.showError(formApi.errors, 'password', this.state.forcePasswordError)}</span>
+                      className={'login__error'}>{this.showError(formApi.errors, this.state.forcePasswordError, 'password')}</span>
                   </div>
 
                   <div className="column is-12">
