@@ -7,10 +7,7 @@ import {
 import * as routes from 'constants/routes';
 import { auth } from 'config/firebase'
 
-let timer;
 let Navigation = ({ authUser }) => {
-  StartLogoutTimeout();
-
   return (
     <nav>
       { authUser
@@ -30,14 +27,5 @@ const NavigationAuth = () =>
 const NavigationNonAuth = () =>
   <ul>
   </ul>;
-
-const StartLogoutTimeout = () => {
-  window.onmousemove = resetTimer;
-};
-
-let resetTimer = () => {
-  clearTimeout(timer);
-  timer = setTimeout(auth.doSignOut, 1800000);
-};
 
 export default Navigation;

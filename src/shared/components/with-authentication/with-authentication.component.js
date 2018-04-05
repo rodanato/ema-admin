@@ -7,7 +7,11 @@ import { Logger } from 'shared/utils';
 
 const withAuthentication = (Component) => {
   class WithAuthentication extends React.Component {
+    timer;
+
     componentDidMount() {
+      this.StartLogoutTimeout();
+
       firebase.auth.onAuthStateChanged(authUser => {
         if (authUser) {
           this.props.onSetAuthUser(authUser);
@@ -16,6 +20,15 @@ const withAuthentication = (Component) => {
           this.props.onSetAuthUser(null);
         }
       });
+    }
+
+    StartLogoutTimeout() {
+      window.onmousemove = this.resetTimer;
+    }
+
+    resetTimer() {
+      clearTimeout(this.timer);
+      this.timer = setTimeout(auth.doSignOut, 1800000);
     }
 
     getToken() {

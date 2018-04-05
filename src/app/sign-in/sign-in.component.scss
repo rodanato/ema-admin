@@ -4,60 +4,66 @@
 
 .login {
   &__section {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-image: url("/images/login-bg.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: left bottom;
+    height              : 100vh;
+    display             : flex;
+    flex-direction      : column;
+    justify-content     : center;
+    background-image    : url("/images/login-bg.png");
+    background-size     : contain;
+    background-repeat   : no-repeat;
+    background-position : left bottom;
   }
   &__logo {
-    width: 215px;
-    margin: 0 auto 40px auto;
+    width  : 215px;
+    margin : 0 auto 40px auto;
   }
   &__error {
-    color: $error;
-    display: block;
-    font-size: 12px;
-    height : 15px;
+    color     : $error;
+    display   : block;
+    font-size : 12px;
+    height    : 15px;
   }
   &__form {
     @include responsive('from-tablet-landscape-to-computer') {
-      max-width: 330px;
+      max-width : 330px;
     }
   }
   &__form-block {
-    margin-bottom: 4px;
-    padding: 0.75rem 45px;
+    margin-bottom : 4px;
+    padding       : 0.75rem 45px;
   }
   &__input {
-    border-radius: 0;
-    border: none;
+    border-radius : 0;
+    border        : none;
     border-bottom : 1px solid $gray;
-    font-size: 15px;
+    font-size     : 15px;
+    padding-left  : 0;
+    padding-right : 0;
     @include regular();
     @include prefix((
       box-shadow: (none)
     ));
 
+    &:active, &:focus {
+      border-color : $gray;
+    }
+
     &::-webkit-input-placeholder {
-      color: $blue;
+      color : $blue;
     }
     &::-moz-placeholder {
-      color: $blue;
+      color : $blue;
     }
     &:-ms-input-placeholder {
-      color: $blue;
+      color : $blue;
     }
     &:-moz-placeholder {
-      color: $blue;
+      color : $blue;
     }
   }
   &__submit {
-    font-size: 15px;
-    height : 53px;
+    font-size : 15px;
+    height    : 53px;
   }
 
 }

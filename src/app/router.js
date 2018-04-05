@@ -5,12 +5,11 @@ import {
   Switch
 } from 'react-router-dom';
 import Loadable from 'react-loadable';
+import Loading from 'shared/components/loading/loading.component';
 
 import withAuthentication from 'shared/components/with-authentication/with-authentication.component';
 import * as routes from '../constants/routes';
 import Navigation  from './navigation/navigation.container';
-
-const Loading = () => <div>Loading...</div>;
 
 const Home = Loadable({
   loader: () => import('./home/home.container'),

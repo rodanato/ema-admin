@@ -1,36 +1,36 @@
-import React, { Component } from 'react';
-import { compose } from 'recompose';
-import { Form, Text } from 'react-form';
-import * as routes from 'constants/routes';
-import { withRouter } from 'react-router-dom';
+import React, {Component} from 'react';
+import {compose}          from 'recompose';
+import {Form, Text}       from 'react-form';
+import * as routes        from 'constants/routes';
+import {withRouter}       from 'react-router-dom';
 
-import { auth } from 'config/firebase';
-import { Logger } from 'shared/utils';
+import {auth}            from 'config/firebase';
+import {Logger}          from 'shared/utils';
 import withAuthorization from 'shared/components/with-authorization/with-authorization.component';
 import './sign-in.component.css';
 
-let forceUserError = false;
-let forcePasswordError = false;
+const errorsMap = {
+  user: {
+    default: '*Ingrese un usuario válido',
+    notFound: '*El correo que has ingresado no existe'
+  },
+  password: {
+    default: '*Ingrese una contraseña válida',
+    wrong: '*Tu contraseña es incorrecta'
+  }
+};
 
 const passwordValidation = password => {
-  console.log(1);
-  if (forcePasswordError) {
-    return 'Ingrese una contraseña válida';
-  }
   if (!password || password.trim() === '') {
-   return 'Ingrese una contraseña válida';
+    return errorsMap.password.default;
   }
 };
 const userValidation = user => {
-  console.log(1);
-  if (forceUserError) {
-    return 'Usuario no encontrado';
-  }
   if (!user || user.trim() === '') {
-    return 'Ingrese una contraseña válida';
+    return errorsMap.user.default;
   }
   if (!user.match(/^\s*?(.+)@(.+?)\s*$/)) {
-    return 'Ingrese una contraseña válida';
+    return errorsMap.user.default;
   }
 
   return null;
@@ -39,16 +39,28 @@ const userValidation = user => {
 class SignIn extends Component {
   state = {
     email: '',
-    password: ''
+    password: '',
+    forceUserError: false,
+    forcePasswordError: false
   };
 
   handleError(errorCode) {
     if (errorCode === 'auth/user-not-found') {
-      forceUserError = true;
+      this.setState({forceUserError: true});
     }
     if (errorCode === 'auth/wrong-password') {
-      forcePasswordError = true;
+      this.setState({forcePasswordError: true});
     }
+  }
+
+  showError(errors, field, forcedError) {
+    if (forcedError && field === 'user') {
+      return errorsMap[field].notFound;
+    }
+    if (forcedError && field === 'password') {
+      return errorsMap[field].wrong;
+    }
+    return (errors && errors[field]) ? errors[field] : null;
   }
 
   onSubmit(submittedValues) {
@@ -57,7 +69,7 @@ class SignIn extends Component {
     } = this.props;
 
     if (submittedValues.user &&
-        submittedValues.password) {
+      submittedValues.password) {
       auth.doSignInWithEmailAndPassword(submittedValues.user, submittedValues.password)
         .then(() => {
           Logger.log(`Logged In`);
@@ -74,14 +86,10 @@ class SignIn extends Component {
     }
   }
 
-  showError(errors, field) {
-    return (errors && errors[field]) ? errors[field] : null;
-  }
-
   render() {
     return (
       <section className="section login__section">
-        <img src={ process.env.PUBLIC_URL + '/images/logo.svg'}
+        <img src={process.env.PUBLIC_URL + '/images/logo.svg'}
              className={'login__logo'}
              alt='Logo de ema'/>
         <div className={'columns is-centered'}>
@@ -95,21 +103,23 @@ class SignIn extends Component {
                     <Text field="user"
                           validate={userValidation}
                           className={'input login__input'}
-                          onChange={() => forceUserError = false}
                           placeholder={'Usuario'}
-                          id="user" />
-                    <span className={'login__error'}>{ this.showError(formApi.errors, 'user') }</span>
+                          onChange={() => this.setState({forceUserError: false})}
+                          id="user"/>
+                    <span
+                      className={'login__error'}>{this.showError(formApi.errors, 'user', this.state.forceUserError)}</span>
                   </div>
 
                   <div className="column is-12 login__form-block">
                     <Text field="password"
                           validate={passwordValidation}
                           className={'input login__input'}
-                          onChange={() => forcePasswordError = false}
                           placeholder={'Contraseña'}
+                          onChange={() => this.setState({forcePasswordError: false})}
                           type={'password'}
-                          id="Password" />
-                    <span className={'login__error'}>{ this.showError(formApi.errors, 'password') }</span>
+                          id="Password"/>
+                    <span
+                      className={'login__error'}>{this.showError(formApi.errors, 'password', this.state.forcePasswordError)}</span>
                   </div>
 
                   <div className="column is-12">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React             from 'react';
 import withAuthorization from 'shared/components/with-authorization/with-authorization.component';
 
 const Home = () => (

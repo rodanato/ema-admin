@@ -40,6 +40,8 @@
   border: none;
   border-bottom: 1px solid #979797;
   font-size: 15px;
+  padding-left: 0;
+  padding-right: 0;
   font-family: 'Work Sans', sans-serif;
   font-weight: 400;
   -moz-box-shadow: none;
@@ -47,6 +49,8 @@
   -ms-box-shadow: none;
   -o-box-shadow: none;
   box-shadow: none; }
+  .login__input:active, .login__input:focus {
+    border-color: #979797; }
   .login__input::-webkit-input-placeholder {
     color: #636589; }
   .login__input::-moz-placeholder {
