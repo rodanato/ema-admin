@@ -12,11 +12,11 @@ import './sign-in.component.css';
 const errorsMap = {
   user: {
     default: '*Ingrese un usuario válido',
-    notFound: '*El correo que has ingresado no existe'
+    notFound: '*Tu usuario y/o contraseña son incorrectos'
   },
   password: {
     default: '*Ingrese una contraseña válida',
-    wrong: '*Tu contraseña es incorrecta'
+    wrong: '*Tu usuario y/o contraseña son incorrectos'
   }
 };
 
@@ -50,7 +50,7 @@ class SignIn extends Component {
     this.errorCode = errorCode;
 
     if (errorCode === 'auth/user-not-found') {
-      return this.setState({forceUserError: true});
+      return this.setState({forcePasswordError: true});
     }
     if (errorCode === 'auth/invalid-email') {
       return this.setState({forceUserError: true});

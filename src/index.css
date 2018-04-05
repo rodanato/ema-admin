@@ -6511,6 +6511,6 @@ body {
 main {
   height: 100vh; }
 
-.input:focus, .input.is-focused, .input:active, .input.is-active, .textarea:focus, .textarea.is-focused, .textarea:active, .textarea.is-active {
+button:active, button:focus, .input:focus, .input.is-focused, .input:active, .input.is-active, .textarea:focus, .textarea.is-focused, .textarea:active, .textarea.is-active {
   outline: none;
   box-shadow: none; }
