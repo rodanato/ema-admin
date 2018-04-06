@@ -12,9 +12,24 @@ const configEnv = {
       messagingSenderId: "870901100380"
     }
   },
-  qa: {},
-  uat: {},
-  prod: {}
+  qa: {
+    API: 'https://ema-admin-console-qa.appspot.com/_ah/api/nina/',
+    firebase: {
+
+    }
+  },
+  uat: {
+    API: 'https://ema-admin-console-uat.appspot.com/_ah/api/nina/',
+    firebase: {
+
+    }
+  },
+  prod: {
+    API: 'https://ema-admin-console.appspot.com/_ah/api/nina/',
+    firebase: {
+
+    }
+  }
 };
 
 const env = process.env.REACT_APP_ENV;

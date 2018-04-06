@@ -77,6 +77,9 @@ class SignIn extends Component {
   }
 
   onSubmit(submittedValues) {
+    this.setState({forceUserError: false});
+    this.setState({forcePasswordError: false});
+
     const {
       history
     } = this.props;
