@@ -1,5 +1,6 @@
 import React             from 'react';
 import withAuthorization from 'shared/components/with-authorization/with-authorization.component';
+import {compose}         from "recompose";
 
 const Home = () => (
   <section>
@@ -9,4 +10,6 @@ const Home = () => (
 
 const authCondition = (authUser) => !!authUser;
 
-export default withAuthorization(authCondition)(Home);
+export default compose(
+  withAuthorization(authCondition),
+)(Home);

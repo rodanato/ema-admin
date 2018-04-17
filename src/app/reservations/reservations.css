@@ -1,0 +1,11 @@
+.ema-btn--success {
+  background: #636589;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 300; }
+  .ema-btn--success:hover {
+    color: #fff; }
+  .ema-btn--success:focus, .ema-btn--success:active {
+    background: #636589;
+    opacity: 0.8; }

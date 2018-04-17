@@ -1,6 +1,7 @@
 @import "bulma/sass/utilities/initial-variables";
 @import "bulma/sass/utilities/functions";
 @import "bulma/bulma";
+@import "styles/variables.scss";
 @import "styles/mixins.scss";
 
 body {
@@ -16,3 +17,71 @@ button:active, button:focus, .input:focus, .input.is-focused, .input:active, .in
   box-shadow : none;
 }
 
+
+
+.loading {
+  background: #fff;
+  width: 100%;
+  height : 100%;
+  position : fixed;
+  left: 0;
+  top: 0;
+  z-index : 100;
+
+  &__icon-container {
+    height: 86px;
+    margin: 0 auto 20px auto;
+    position : relative;
+    width : 86px;
+  }
+  &__icon-logo {
+    width: 46px;
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    margin: -14px 0 0 -23px;
+  }
+  &__message {
+    color: $gray;
+    font-size: 14px;
+    margin: 0 auto;
+    text-align: center;
+    width: 70%;
+    display: block;
+  }
+}
+.loadingCSS {
+  display: inline-block;
+  position: relative;
+  width: 86px;
+  height: 86px;
+}
+.loadingCSS div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 86px;
+  height: 86px;
+  margin: 0;
+  border: 3px solid #D0D0D0;
+  border-radius: 50%;
+  animation: loadingCSS 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #D0D0D0 transparent transparent transparent;
+}
+.loadingCSS div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.loadingCSS div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.loadingCSS div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes loadingCSS {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

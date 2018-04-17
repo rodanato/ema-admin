@@ -13,7 +13,7 @@ const withAuthorization = (authCondition) => (Component) => {
         if (!authCondition(authUser) && !authUser) {
           this.props.history.push(routes.SIGN_IN);
         } else if (authUser) {
-          this.props.history.push(routes.HOME);
+          this.props.history.push(routes.RESERVATIONS);
         }
       });
     }

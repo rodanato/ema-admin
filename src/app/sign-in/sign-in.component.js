@@ -89,7 +89,6 @@ class SignIn extends Component {
       auth.doSignInWithEmailAndPassword(submittedValues.user.toLowerCase(), submittedValues.password)
         .then(() => {
           Logger.log(`Logged In`);
-          history.push(routes.HOME);
         })
         .catch(error => {
           this.handleError(error.code);
