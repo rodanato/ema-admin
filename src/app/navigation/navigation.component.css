@@ -1,0 +1,14 @@
+.nav {
+  position: relative; }
+  .nav__container {
+    text-align: center; }
+  .nav__logo {
+    margin: 0 auto;
+    vertical-align: middle; }
+  .nav__right {
+    color: #fff;
+    font-size: 15px;
+    position: absolute;
+    right: 28px;
+    top: 17px;
+    line-height: 20px; }

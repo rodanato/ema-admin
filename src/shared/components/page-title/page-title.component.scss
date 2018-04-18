@@ -1,0 +1,16 @@
+@import "styles/variables.scss";
+@import "styles/mixins.scss";
+
+.page-title {
+  background  : #fff;
+  padding : 54px 0 36px 0;
+  text-align: center;
+
+  &__text {
+    color          : $blue;
+    display : inline-block;
+    font-size      : 35px;
+    text-transform : uppercase;
+    @include light();
+  }
+}

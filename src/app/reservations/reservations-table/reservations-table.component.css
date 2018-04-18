@@ -1,0 +1,23 @@
+.reservations-table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  padding: 58px;
+  width: 100%; }
+  .reservations-table__header {
+    color: #636589;
+    font-size: 14px;
+    height: 40px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #636589;
+    padding-bottom: 13px; }
+    .reservations-table__header-td {
+      min-width: 20%; }
+  .reservations-table__body {
+    color: #979797;
+    font-size: 14px; }
+    .reservations-table__body-tr {
+      border-bottom: 1px dotted #979797; }
+    .reservations-table__body-td {
+      min-width: 20%;
+      height: 70px;
+      line-height: 70px; }

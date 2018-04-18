@@ -1,3 +1,4 @@
+@import "~normalize.css/normalize.css";
 @import "bulma/sass/utilities/initial-variables";
 @import "bulma/sass/utilities/functions";
 @import "bulma/bulma";
@@ -5,19 +6,26 @@
 @import "styles/mixins.scss";
 
 body {
+  background-color: $light-gray;
   @include regular();
 }
 
 main {
   height : 100vh;
 }
-
+.section {
+  background: #fff;
+}
 button:active, button:focus, .input:focus, .input.is-focused, .input:active, .input.is-active, .textarea:focus, .textarea.is-focused, .textarea:active, .textarea.is-active {
   outline    : none;
   box-shadow : none;
 }
 
 
+.header {
+  height : 54px;
+  background-color: $blue;
+}
 
 .loading {
   background: #fff;

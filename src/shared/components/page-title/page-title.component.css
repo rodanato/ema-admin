@@ -1,0 +1,11 @@
+.page-title {
+  background: #fff;
+  padding: 54px 0 36px 0;
+  text-align: center; }
+  .page-title__text {
+    color: #636589;
+    display: inline-block;
+    font-size: 35px;
+    text-transform: uppercase;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 300; }

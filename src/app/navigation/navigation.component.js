@@ -1,11 +1,6 @@
 import React from 'react';
-
-import {
-  Link
-} from 'react-router-dom';
-
-import * as routes from 'constants/routes';
 import { auth } from 'config/firebase'
+import './navigation.component.css';
 
 let Navigation = ({ authUser }) => {
   return (
@@ -19,16 +14,16 @@ let Navigation = ({ authUser }) => {
 };
 
 const NavigationAuth = () =>
-  <div className={'level nav__container'}>
+  <div className={'nav__container'}>
     {/*<ul className={'level-left'}>*/}
       {/*<li><Link to={routes.HOME}>Home</Link></li>*/}
     {/*</ul>*/}
-    <div className="level-center">
-      <img src={process.env.PUBLIC_URL + '/images/logo.svg'}
-           alt='Logo'/>
-    </div>
+    <img width="137"
+         src={process.env.PUBLIC_URL + '/images/logo.svg'}
+         className={'nav__logo'}
+         alt='Logo'/>
 
-    <div className={'level-right nav__right'}>
+    <div className={'nav__right'}>
       <h6>Valeria Tapia</h6>
       <span onClick={() => auth.doSignOut()}>
         Cerrar sesión

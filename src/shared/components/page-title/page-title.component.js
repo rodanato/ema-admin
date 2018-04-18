@@ -1,4 +1,5 @@
 import React from 'react';
+import './page-title.component.css';
 
 const PageTitle = (props) => (
   <div className={'page-title'}>
